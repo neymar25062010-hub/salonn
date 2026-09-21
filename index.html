@@ -1,0 +1,3086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>S by Hazel Salon | Luxury Beauty Experience Kuwait</title>
+
+<meta name="description"
+content="S by Hazel Salon Kuwait — premium hair, beauty, nails and self-care experience.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   S BY HAZEL SALON
+   LUXURY SINGLE FILE WEBSITE
+========================================================= */
+
+:root{
+    --black:#090807;
+    --dark:#11100e;
+    --dark2:#171512;
+    --cream:#f4eee5;
+    --cream2:#ded3c4;
+    --gold:#c6a66b;
+    --gold2:#e0c58e;
+    --brown:#8d6c48;
+    --line:rgba(224,197,142,.20);
+    --white:#fff;
+    --muted:#aaa39a;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+body.no-scroll{
+    overflow:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:#090807;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.8s ease;
+}
+
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-inner{
+    text-align:center;
+}
+
+.loader-logo{
+    font-family:"Cormorant Garamond",serif;
+    font-size:58px;
+    color:var(--gold2);
+    letter-spacing:8px;
+}
+
+.loader-line{
+    width:0;
+    height:1px;
+    background:var(--gold);
+    margin:18px auto;
+    animation:loaderLine 1.5s ease forwards;
+}
+
+.loader-text{
+    font-size:10px;
+    letter-spacing:5px;
+    color:#888;
+    text-transform:uppercase;
+}
+
+@keyframes loaderLine{
+    to{width:180px;}
+}
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+.cursor{
+    position:fixed;
+    width:12px;
+    height:12px;
+    border:1px solid var(--gold2);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:10000;
+    transform:translate(-50%,-50%);
+    transition:.08s linear;
+}
+
+@media(max-width:900px){
+    .cursor{display:none;}
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    padding:22px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    transition:.4s ease;
+}
+
+header.scrolled{
+    background:rgba(9,8,7,.92);
+    backdrop-filter:blur(20px);
+    padding:15px 6%;
+    border-bottom:1px solid var(--line);
+}
+
+.logo{
+    font-family:"Cormorant Garamond",serif;
+    font-size:30px;
+    letter-spacing:3px;
+    color:var(--cream);
+}
+
+.logo span{
+    color:var(--gold);
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:32px;
+}
+
+nav a{
+    position:relative;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:#d5cec3;
+    transition:.3s;
+}
+
+nav a:hover,
+nav a.active{
+    color:var(--gold2);
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0;
+    height:1px;
+    background:var(--gold);
+    transition:.3s;
+}
+
+nav a:hover::after,
+nav a.active::after{
+    width:100%;
+}
+
+.header-btn{
+    border:1px solid var(--gold);
+    padding:12px 20px;
+    color:var(--gold2);
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transition:.3s;
+}
+
+.header-btn:hover{
+    background:var(--gold);
+    color:var(--black);
+}
+
+.menu-btn{
+    display:none;
+    border:0;
+    background:none;
+    color:white;
+    font-size:26px;
+}
+
+/* =========================================================
+   PAGE SYSTEM
+========================================================= */
+
+.page{
+    display:none;
+    min-height:100vh;
+    animation:pageIn .65s ease;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+}
+
+.hero-bg{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(90deg,
+        rgba(9,8,7,.94) 0%,
+        rgba(9,8,7,.70) 45%,
+        rgba(9,8,7,.25) 100%),
+        url("https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=2000&q=90")
+        center/cover;
+    transform:scale(1.04);
+    animation:heroZoom 10s ease infinite alternate;
+}
+
+@keyframes heroZoom{
+    from{transform:scale(1.04);}
+    to{transform:scale(1.10);}
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    width:min(900px,90%);
+    margin-left:10%;
+    padding-top:70px;
+}
+
+.eyebrow{
+    color:var(--gold2);
+    letter-spacing:5px;
+    text-transform:uppercase;
+    font-size:11px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-family:"Cormorant Garamond",serif;
+    font-weight:500;
+    font-size:clamp(70px,10vw,150px);
+    line-height:.78;
+    letter-spacing:-3px;
+}
+
+.hero h1 span{
+    display:block;
+    color:var(--gold2);
+    font-style:italic;
+}
+
+.hero-description{
+    max-width:480px;
+    margin:35px 0;
+    color:#c7c0b7;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px 28px;
+    border:1px solid var(--gold);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:10px;
+    transition:.35s;
+}
+
+.btn-gold{
+    background:var(--gold);
+    color:var(--black);
+}
+
+.btn-gold:hover{
+    background:var(--gold2);
+    transform:translateY(-3px);
+}
+
+.btn-outline{
+    color:var(--gold2);
+}
+
+.btn-outline:hover{
+    background:var(--gold);
+    color:var(--black);
+    transform:translateY(-3px);
+}
+
+.hero-side{
+    position:absolute;
+    right:40px;
+    bottom:40px;
+    writing-mode:vertical-rl;
+    letter-spacing:4px;
+    font-size:9px;
+    color:#999;
+    text-transform:uppercase;
+}
+
+/* =========================================================
+   COMMON
+========================================================= */
+
+.section{
+    padding:120px 7%;
+}
+
+.section-dark{
+    background:var(--dark);
+}
+
+.section-header{
+    margin-bottom:60px;
+}
+
+.section-number{
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:4px;
+    margin-bottom:15px;
+}
+
+.section-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(48px,6vw,85px);
+    font-weight:500;
+    line-height:.9;
+}
+
+.section-title span{
+    color:var(--gold2);
+    font-style:italic;
+}
+
+.section-subtitle{
+    color:var(--muted);
+    max-width:550px;
+    line-height:1.8;
+    margin-top:25px;
+    font-size:14px;
+}
+
+.gold-line{
+    width:70px;
+    height:1px;
+    background:var(--gold);
+    margin:25px 0;
+}
+
+/* =========================================================
+   HOME INTRO
+========================================================= */
+
+.intro{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+}
+
+.intro-image{
+    position:relative;
+}
+
+.intro-image img{
+    height:650px;
+    object-fit:cover;
+}
+
+.intro-image::after{
+    content:"";
+    position:absolute;
+    width:70%;
+    height:70%;
+    border:1px solid var(--gold);
+    right:-25px;
+    bottom:-25px;
+    z-index:-1;
+}
+
+.intro-text p{
+    color:#b7afa5;
+    line-height:2;
+    font-size:15px;
+    margin-bottom:25px;
+}
+
+/* =========================================================
+   FEATURE CARDS
+========================================================= */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+}
+
+.feature{
+    background:var(--dark);
+    padding:55px 40px;
+    transition:.4s;
+}
+
+.feature:hover{
+    background:#1c1915;
+    transform:translateY(-5px);
+}
+
+.feature-icon{
+    font-size:30px;
+    color:var(--gold);
+    margin-bottom:25px;
+}
+
+.feature h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:30px;
+    font-weight:500;
+    margin-bottom:15px;
+}
+
+.feature p{
+    color:#8e8982;
+    line-height:1.7;
+    font-size:13px;
+}
+
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.marquee{
+    overflow:hidden;
+    white-space:nowrap;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:25px 0;
+}
+
+.marquee-track{
+    display:inline-block;
+    animation:marquee 25s linear infinite;
+}
+
+.marquee span{
+    font-family:"Cormorant Garamond",serif;
+    font-size:40px;
+    color:#6f665d;
+    margin:0 30px;
+}
+
+.marquee span:nth-child(even){
+    color:var(--gold);
+}
+
+@keyframes marquee{
+    to{transform:translateX(-50%);}
+}
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.service-tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:35px;
+}
+
+.service-tab{
+    background:none;
+    border:1px solid var(--line);
+    color:#aaa;
+    padding:12px 20px;
+    text-transform:uppercase;
+    font-size:9px;
+    letter-spacing:2px;
+    transition:.3s;
+}
+
+.service-tab.active,
+.service-tab:hover{
+    background:var(--gold);
+    color:var(--black);
+    border-color:var(--gold);
+}
+
+.services-list{
+    border-top:1px solid var(--line);
+}
+
+.service-item{
+    display:grid;
+    grid-template-columns:80px 1fr auto;
+    gap:25px;
+    align-items:center;
+    padding:30px 0;
+    border-bottom:1px solid var(--line);
+    transition:.3s;
+}
+
+.service-item:hover{
+    padding-left:15px;
+    background:rgba(198,166,107,.03);
+}
+
+.service-number{
+    color:var(--gold);
+    font-size:11px;
+}
+
+.service-name{
+    font-family:"Cormorant Garamond",serif;
+    font-size:30px;
+}
+
+.service-desc{
+    font-size:12px;
+    color:#777;
+    margin-top:5px;
+}
+
+.service-price{
+    font-family:"Cormorant Garamond",serif;
+    font-size:23px;
+    color:var(--gold2);
+}
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+}
+
+.gallery-item{
+    height:350px;
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+}
+
+.gallery-item:nth-child(2),
+.gallery-item:nth-child(6){
+    height:450px;
+}
+
+.gallery-item img{
+    height:100%;
+    object-fit:cover;
+    transition:.8s;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.08);
+}
+
+.gallery-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(transparent,rgba(0,0,0,.8));
+    opacity:0;
+    transition:.4s;
+    display:flex;
+    align-items:flex-end;
+    padding:25px;
+}
+
+.gallery-item:hover .gallery-overlay{
+    opacity:1;
+}
+
+.gallery-overlay span{
+    color:var(--gold2);
+    letter-spacing:2px;
+    font-size:10px;
+    text-transform:uppercase;
+}
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.96);
+    z-index:5000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+}
+
+.lightbox.show{
+    display:flex;
+}
+
+.lightbox img{
+    width:auto;
+    max-width:90%;
+    max-height:85vh;
+    object-fit:contain;
+}
+
+.close-lightbox{
+    position:absolute;
+    top:25px;
+    right:35px;
+    background:none;
+    border:0;
+    color:white;
+    font-size:40px;
+}
+
+/* =========================================================
+   TEAM
+========================================================= */
+
+.team-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.team-card{
+    position:relative;
+    overflow:hidden;
+}
+
+.team-card img{
+    height:500px;
+    object-fit:cover;
+    filter:grayscale(30%);
+    transition:.7s;
+}
+
+.team-card:hover img{
+    transform:scale(1.05);
+    filter:grayscale(0);
+}
+
+.team-info{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:35px;
+    background:linear-gradient(transparent,rgba(0,0,0,.95));
+}
+
+.team-info h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:32px;
+}
+
+.team-info p{
+    color:var(--gold2);
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/* =========================================================
+   OFFERS
+========================================================= */
+
+.offer-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.offer{
+    padding:50px 35px;
+    border:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.offer:hover{
+    border-color:var(--gold);
+    transform:translateY(-8px);
+}
+
+.offer.featured{
+    background:linear-gradient(145deg,#211c15,#0e0d0b);
+    border-color:var(--gold);
+}
+
+.offer-tag{
+    color:var(--gold);
+    text-transform:uppercase;
+    font-size:9px;
+    letter-spacing:3px;
+    margin-bottom:25px;
+}
+
+.offer h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+.offer-price{
+    color:var(--gold2);
+    font-family:"Cormorant Garamond",serif;
+    font-size:40px;
+    margin-bottom:25px;
+}
+
+.offer ul{
+    list-style:none;
+    margin-bottom:30px;
+}
+
+.offer li{
+    color:#999;
+    padding:9px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    font-size:13px;
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:90px;
+    align-items:center;
+}
+
+.about-visual{
+    position:relative;
+}
+
+.about-visual img{
+    height:650px;
+    object-fit:cover;
+}
+
+.about-number{
+    position:absolute;
+    bottom:-40px;
+    left:-40px;
+    width:160px;
+    height:160px;
+    background:var(--gold);
+    color:var(--black);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:"Cormorant Garamond",serif;
+    font-size:23px;
+    line-height:1.1;
+}
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq{
+    max-width:900px;
+    margin:auto;
+}
+
+.faq-item{
+    border-bottom:1px solid var(--line);
+}
+
+.faq-question{
+    width:100%;
+    background:none;
+    border:0;
+    color:var(--cream);
+    padding:25px 0;
+    display:flex;
+    justify-content:space-between;
+    text-align:left;
+    font-family:"Cormorant Garamond",serif;
+    font-size:24px;
+}
+
+.faq-question span{
+    color:var(--gold);
+    font-family:"DM Sans",sans-serif;
+}
+
+.faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:.4s ease;
+    color:#888;
+    line-height:1.8;
+    font-size:13px;
+}
+
+.faq-item.open .faq-answer{
+    max-height:200px;
+    padding-bottom:25px;
+}
+
+/* =========================================================
+   BOOKING
+========================================================= */
+
+.booking-layout{
+    display:grid;
+    grid-template-columns:.75fr 1.25fr;
+    gap:70px;
+}
+
+.contact-details{
+    border-top:1px solid var(--line);
+}
+
+.contact-row{
+    padding:25px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.contact-row small{
+    display:block;
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:9px;
+    margin-bottom:8px;
+}
+
+.contact-row p{
+    color:#aaa;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.booking-form{
+    background:#11100e;
+    padding:50px;
+    border:1px solid var(--line);
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    display:block;
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:9px;
+    margin-bottom:10px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    background:#090807;
+    border:1px solid #29251f;
+    color:white;
+    padding:15px;
+    outline:none;
+    transition:.3s;
+}
+
+.form-group textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--gold);
+}
+
+.form-message{
+    margin-top:20px;
+    padding:15px;
+    display:none;
+    border:1px solid var(--gold);
+    color:var(--gold2);
+    font-size:12px;
+    line-height:1.6;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    background:#050504;
+    padding:80px 7% 30px;
+    border-top:1px solid var(--line);
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:50px;
+    padding-bottom:60px;
+}
+
+.footer-logo{
+    font-family:"Cormorant Garamond",serif;
+    font-size:42px;
+    letter-spacing:3px;
+}
+
+.footer-description{
+    color:#777;
+    max-width:330px;
+    line-height:1.8;
+    margin-top:20px;
+    font-size:13px;
+}
+
+.footer-title{
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+}
+
+.footer-links{
+    list-style:none;
+}
+
+.footer-links li{
+    margin:12px 0;
+}
+
+.footer-links a{
+    color:#888;
+    font-size:13px;
+    transition:.3s;
+}
+
+.footer-links a:hover{
+    color:var(--gold2);
+}
+
+.footer-bottom{
+    border-top:1px solid var(--line);
+    padding-top:25px;
+    display:flex;
+    justify-content:space-between;
+    color:#555;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+.whatsapp{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25d366;
+    color:white;
+    z-index:900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+    transition:.3s;
+}
+
+.whatsapp:hover{
+    transform:scale(1.1);
+}
+
+/* =========================================================
+   REVEAL ANIMATION
+========================================================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:1s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    nav{
+        gap:15px;
+    }
+
+    .header-btn{
+        display:none;
+    }
+
+    .intro,
+    .about-grid,
+    .booking-layout{
+        grid-template-columns:1fr;
+    }
+
+    .features,
+    .offer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .team-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .gallery{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    header{
+        padding:18px 5%;
+    }
+
+    .logo{
+        font-size:25px;
+    }
+
+    nav{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:80%;
+        height:100vh;
+        background:#0b0a08;
+        flex-direction:column;
+        justify-content:center;
+        gap:30px;
+        transition:.5s;
+        border-left:1px solid var(--line);
+    }
+
+    nav.open{
+        right:0;
+    }
+
+    nav a{
+        font-size:13px;
+    }
+
+    .menu-btn{
+        display:block;
+        z-index:1001;
+    }
+
+    .hero-content{
+        margin-left:7%;
+    }
+
+    .hero h1{
+        font-size:70px;
+    }
+
+    .hero-side{
+        display:none;
+    }
+
+    .section{
+        padding:80px 6%;
+    }
+
+    .intro-image img,
+    .about-visual img{
+        height:450px;
+    }
+
+    .features,
+    .offer-grid,
+    .team-grid,
+    .gallery{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-item,
+    .gallery-item:nth-child(2),
+    .gallery-item:nth-child(6){
+        height:400px;
+    }
+
+    .service-item{
+        grid-template-columns:40px 1fr;
+    }
+
+    .service-price{
+        grid-column:2;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .booking-form{
+        padding:25px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ======================================================
+     LOADER
+====================================================== -->
+
+<div class="loader" id="loader">
+    <div class="loader-inner">
+        <div class="loader-logo">S</div>
+        <div class="loader-line"></div>
+        <div class="loader-text">S by Hazel Salon · Kuwait</div>
+    </div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+
+
+<!-- ======================================================
+     HEADER
+====================================================== -->
+
+<header id="header">
+
+    <a href="#home" class="logo">
+        S <span>by Hazel</span>
+    </a>
+
+    <nav id="nav">
+
+        <a href="#home" data-page="home">Home</a>
+
+        <a href="#about" data-page="about">About</a>
+
+        <a href="#services" data-page="services">Services</a>
+
+        <a href="#gallery" data-page="gallery">Gallery</a>
+
+        <a href="#team" data-page="team">Team</a>
+
+        <a href="#offers" data-page="offers">Offers</a>
+
+        <a href="#contact" data-page="contact">Contact</a>
+
+    </nav>
+
+    <a href="#contact" class="header-btn">
+        Book Appointment
+    </a>
+
+    <button class="menu-btn" id="menuBtn">☰</button>
+
+</header>
+
+
+<!-- ======================================================
+     HOME PAGE
+====================================================== -->
+
+<main class="page active" id="page-home">
+
+<section class="hero">
+
+    <div class="hero-bg"></div>
+
+    <div class="hero-content reveal">
+
+        <div class="eyebrow">
+            Luxury Beauty · Kuwait
+        </div>
+
+        <h1>
+            Beauty
+            <span>Elevated.</span>
+        </h1>
+
+        <p class="hero-description">
+            Welcome to S by Hazel Salon — an intimate luxury beauty
+            destination where refined style, exceptional artistry and
+            personalized care come together.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#contact" class="btn btn-gold">
+                Reserve Your Visit
+            </a>
+
+            <a href="#services" class="btn btn-outline">
+                Explore Services
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-side">
+        Sabah Al Salem · Kuwait
+    </div>
+
+</section>
+
+
+<section class="section section-dark">
+
+    <div class="intro">
+
+        <div class="intro-image reveal">
+
+            <img
+            src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85"
+            alt="Luxury salon interior">
+
+        </div>
+
+        <div class="intro-text reveal">
+
+            <div class="section-number">01 — THE EXPERIENCE</div>
+
+            <h2 class="section-title">
+                A new standard<br>
+                of <span>beauty.</span>
+            </h2>
+
+            <div class="gold-line"></div>
+
+            <p>
+                At S by Hazel, beauty is more than a service.
+                It is an experience designed around you.
+            </p>
+
+            <p>
+                From precision hair artistry and dimensional colour
+                to luxurious beauty rituals, every detail is carefully
+                considered to make your visit memorable.
+            </p>
+
+            <a href="#about" class="btn btn-outline">
+                Discover Our Story
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <span>Hair</span>
+        <span>Colour</span>
+        <span>Beauty</span>
+        <span>Nails</span>
+        <span>Glow</span>
+        <span>Luxury</span>
+        <span>Hair</span>
+        <span>Colour</span>
+        <span>Beauty</span>
+        <span>Nails</span>
+        <span>Glow</span>
+        <span>Luxury</span>
+
+    </div>
+
+</div>
+
+
+<section class="section">
+
+    <div class="section-header reveal">
+
+        <div class="section-number">02 — WHY S BY HAZEL</div>
+
+        <h2 class="section-title">
+            Designed for<br>
+            <span>you.</span>
+        </h2>
+
+    </div>
+
+    <div class="features">
+
+        <div class="feature reveal">
+
+            <div class="feature-icon">✦</div>
+
+            <h3>Personalised Beauty</h3>
+
+            <p>
+                Every appointment begins with understanding
+                your style, your preferences and your vision.
+            </p>
+
+        </div>
+
+        <div class="feature reveal">
+
+            <div class="feature-icon">◇</div>
+
+            <h3>Expert Artistry</h3>
+
+            <p>
+                Refined techniques and attention to detail
+                create results designed to complement you.
+            </p>
+
+        </div>
+
+        <div class="feature reveal">
+
+            <div class="feature-icon">◌</div>
+
+            <h3>Luxury Atmosphere</h3>
+
+            <p>
+                Escape the everyday inside a calm,
+                sophisticated environment created for relaxation.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ======================================================
+     ABOUT PAGE
+====================================================== -->
+
+<main class="page" id="page-about">
+
+<section class="section" style="padding-top:180px;">
+
+    <div class="about-grid">
+
+        <div class="about-visual reveal">
+
+            <img
+            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85"
+            alt="Beauty salon">
+
+            <div class="about-number">
+                S<br>
+                BY<br>
+                HAZEL
+            </div>
+
+        </div>
+
+        <div class="reveal">
+
+            <div class="section-number">
+                01 — OUR STORY
+            </div>
+
+            <h1 class="section-title">
+                Where beauty<br>
+                becomes <span>art.</span>
+            </h1>
+
+            <div class="gold-line"></div>
+
+            <p class="section-subtitle">
+
+                S by Hazel Salon is built around a simple idea:
+                exceptional beauty should feel personal.
+
+                Our space combines modern sophistication with
+                warm hospitality, creating an environment where
+                every guest can slow down, relax and leave feeling
+                beautifully refreshed.
+
+            </p>
+
+            <br>
+
+            <p class="section-subtitle">
+
+                Our philosophy is understated luxury —
+                beautiful results, thoughtful service and
+                attention to the smallest details.
+
+            </p>
+
+            <br>
+
+            <a href="#contact" class="btn btn-gold">
+                Book Your Experience
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section section-dark">
+
+    <div class="section-header reveal">
+
+        <div class="section-number">02 — OUR PHILOSOPHY</div>
+
+        <h2 class="section-title">
+            Less ordinary.<br>
+            More <span>extraordinary.</span>
+        </h2>
+
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">01</div>
+
+            <h3>Listen</h3>
+
+            <p>
+                We understand what you want before
+                we begin creating.
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <div class="feature-icon">02</div>
+
+            <h3>Create</h3>
+
+            <p>
+                Our artistry combines technique,
+                creativity and modern beauty trends.
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <div class="feature-icon">03</div>
+
+            <h3>Refine</h3>
+
+            <p>
+                Every final detail is checked so you
+                leave feeling confident.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ======================================================
+     SERVICES PAGE
+====================================================== -->
+
+<main class="page" id="page-services">
+
+<section class="section" style="padding-top:180px;">
+
+    <div class="section-header reveal">
+
+        <div class="section-number">01 — OUR MENU</div>
+
+        <h1 class="section-title">
+            Signature<br>
+            <span>services.</span>
+        </h1>
+
+        <p class="section-subtitle">
+            Discover our curated selection of hair,
+            beauty, nail and self-care experiences.
+        </p>
+
+    </div>
+
+
+    <div class="service-tabs">
+
+        <button class="service-tab active" data-filter="all">
+            All
+        </button>
+
+        <button class="service-tab" data-filter="hair">
+            Hair
+        </button>
+
+        <button class="service-tab" data-filter="beauty">
+            Beauty
+        </button>
+
+        <button class="service-tab" data-filter="nails">
+            Nails
+        </button>
+
+        <button class="service-tab" data-filter="spa">
+            Care
+        </button>
+
+    </div>
+
+
+    <div class="services-list">
+
+        <div class="service-item" data-category="hair">
+
+            <div class="service-number">01</div>
+
+            <div>
+                <div class="service-name">Signature Haircut</div>
+                <div class="service-desc">
+                    Consultation, precision cut & finish
+                </div>
+            </div>
+
+            <div class="service-price">From 18 KD</div>
+
+        </div>
+
+
+        <div class="service-item" data-category="hair">
+
+            <div class="service-number">02</div>
+
+            <div>
+                <div class="service-name">Blow Dry</div>
+                <div class="service-desc">
+                    Smooth, polished salon finish
+                </div>
+            </div>
+
+            <div class="service-price">From 10 KD</div>
+
+        </div>
+
+
+        <div class="service-item" data-category="hair">
+
+            <div class="service-number">03</div>
+
+            <div>
+                <div class="service-name">Dimensional Colour</div>
+                <div class="service-desc">
+                    Tailored colour transformation
+                </div>
+            </div>
+
+            <div class="service-price">From 45 KD</div>
+
+        </div>
+
+
+        <div class="service-item" data-category="hair">
+
+            <div class="service-number">04</div>
+
+            <div>
+                <div class="service-name">Highlights</div>
+                <div class="service-desc">
+                    Soft, dimensional personalised highlights
+                </div>
+            </div>
+
+            <div class="service-price">From 55 KD</div>
+
+        </div>
+
+
+        <div class="service-item" data-category="beauty">
+
+            <div class="service-number">05</div>
+
+            <div>
+                <div class="service-name">Facial Ritual</div>
+                <div class="service-desc">
+                    Relaxing facial treatment
+                </div>
+            </div>
+
+            <div class="service-price">From 25 KD</div>
+
+        </div>
+
+
+        <div class="service-item" data-category="nails">
+
+            <div class="service-number">06</div>
+
+            <div>
+                <div class="service-name">Manicure</div>
+                <div class="service-desc">
+                    Classic manicure & finishing
+                </div>
+            </div>
+
+            <div class="service-price">From 10 KD</div>
+
+        </div>
+
+
+        <div class="service-item" data-category="nails">
+
+            <div class="service-number">07</div>
+
+            <div>
+                <div class="service-name">Pedicure</div>
+                <div class="service-desc">
+                    Complete foot care experience
+                </div>
+            </div>
+
+            <div class="service-price">From 15 KD</div>
+
+        </div>
+
+
+        <div class="service-item" data-category="spa">
+
+            <div class="service-number">08</div>
+
+            <div>
+                <div class="service-name">Hair Treatment</div>
+                <div class="service-desc">
+                    Nourishing professional treatment
+                </div>
+            </div>
+
+            <div class="service-price">From 20 KD</div>
+
+        </div>
+
+    </div>
+
+    <p style="margin-top:25px;color:#666;font-size:11px;">
+        *Prices shown are demonstration website content and should be
+        replaced with the salon's confirmed current menu.
+    </p>
+
+</section>
+
+</main>
+
+
+<!-- ======================================================
+     GALLERY PAGE
+====================================================== -->
+
+<main class="page" id="page-gallery">
+
+<section class="section" style="padding-top:180px;">
+
+    <div class="section-header reveal">
+
+        <div class="section-number">01 — VISUAL JOURNAL</div>
+
+        <h1 class="section-title">
+            The Hazel<br>
+            <span>world.</span>
+        </h1>
+
+    </div>
+
+
+    <div class="gallery">
+
+        <div class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=1000&q=85">
+
+            <div class="gallery-overlay">
+                <span>Hair Artistry</span>
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1000&q=85">
+
+            <div class="gallery-overlay">
+                <span>Salon Experience</span>
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1000&q=85">
+
+            <div class="gallery-overlay">
+                <span>Beauty</span>
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1000&q=85">
+
+            <div class="gallery-overlay">
+                <span>Nails</span>
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=1000&q=85">
+
+            <div class="gallery-overlay">
+                <span>Details</span>
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=1000&q=85">
+
+            <div class="gallery-overlay">
+                <span>Beauty Ritual</span>
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1000&q=85">
+
+            <div class="gallery-overlay">
+                <span>Glow</span>
+            </div>
+
+        </div>
+
+
+        <div class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1000&q=85">
+
+            <div class="gallery-overlay">
+                <span>Luxury</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ======================================================
+     TEAM PAGE
+====================================================== -->
+
+<main class="page" id="page-team">
+
+<section class="section" style="padding-top:180px;">
+
+    <div class="section-header reveal">
+
+        <div class="section-number">01 — THE ARTISTS</div>
+
+        <h1 class="section-title">
+            Meet the<br>
+            <span>hands behind beauty.</span>
+        </h1>
+
+        <p class="section-subtitle">
+            A luxury experience begins with talented people.
+            Our website team profiles below are placeholders
+            that can be replaced with the salon's actual team.
+        </p>
+
+    </div>
+
+
+    <div class="team-grid">
+
+        <div class="team-card reveal">
+
+            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=85">
+
+            <div class="team-info">
+
+                <h3>Hazel</h3>
+
+                <p>Creative Director</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="team-card reveal">
+
+            <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=900&q=85">
+
+            <div class="team-info">
+
+                <h3>Sarah</h3>
+
+                <p>Senior Hair Artist</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="team-card reveal">
+
+            <img src="https://images.unsplash.com/photo-1595959183082-7bce7a4f5d4f?auto=format&fit=crop&w=900&q=85">
+
+            <div class="team-info">
+
+                <h3>Lina</h3>
+
+                <p>Beauty Specialist</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ======================================================
+     OFFERS PAGE
+====================================================== -->
+
+<main class="page" id="page-offers">
+
+<section class="section" style="padding-top:180px;">
+
+    <div class="section-header reveal">
+
+        <div class="section-number">01 — SPECIAL MOMENTS</div>
+
+        <h1 class="section-title">
+            Curated<br>
+            <span>experiences.</span>
+        </h1>
+
+        <p class="section-subtitle">
+            Beautiful combinations created for moments
+            when you want a little more.
+        </p>
+
+    </div>
+
+
+    <div class="offer-grid">
+
+        <div class="offer reveal">
+
+            <div class="offer-tag">
+                The Essential
+            </div>
+
+            <h3>Everyday Glow</h3>
+
+            <div class="offer-price">
+                35 KD
+            </div>
+
+            <ul>
+                <li>Signature Blow Dry</li>
+                <li>Express Facial</li>
+                <li>Classic Manicure</li>
+                <li>Refreshment</li>
+            </ul>
+
+            <a href="#contact" class="btn btn-outline">
+                Book Package
+            </a>
+
+        </div>
+
+
+        <div class="offer featured reveal">
+
+            <div class="offer-tag">
+                Most Loved
+            </div>
+
+            <h3>Hazel Signature</h3>
+
+            <div class="offer-price">
+                65 KD
+            </div>
+
+            <ul>
+                <li>Hair Styling</li>
+                <li>Luxury Hair Treatment</li>
+                <li>Facial Ritual</li>
+                <li>Manicure</li>
+                <li>Signature Refreshment</li>
+            </ul>
+
+            <a href="#contact" class="btn btn-gold">
+                Reserve
+            </a>
+
+        </div>
+
+
+        <div class="offer reveal">
+
+            <div class="offer-tag">
+                Special Occasion
+            </div>
+
+            <h3>Event Ready</h3>
+
+            <div class="offer-price">
+                85 KD
+            </div>
+
+            <ul>
+                <li>Premium Hair Styling</li>
+                <li>Makeup / Beauty Service</li>
+                <li>Nail Finish</li>
+                <li>Personal Consultation</li>
+            </ul>
+
+            <a href="#contact" class="btn btn-outline">
+                Enquire
+            </a>
+
+        </div>
+
+    </div>
+
+    <p style="margin-top:25px;color:#666;font-size:11px;">
+        *Promotional packages shown here are sample website content.
+        Confirm current salon offers before publishing.
+    </p>
+
+</section>
+
+
+<section class="section section-dark">
+
+    <div class="section-header">
+
+        <div class="section-number">02 — FAQ</div>
+
+        <h2 class="section-title">
+            Questions,<br>
+            <span>answered.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="faq">
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+                Do I need an appointment?
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                Appointments are recommended so we can reserve
+                the right artist and time for your service.
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+                What are your opening hours?
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                Public listings currently show opening hours
+                from 10:00 AM to 8:00 PM daily.
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+                Can I request a specific stylist?
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                Yes. Add your preferred stylist to the booking
+                notes and the team can confirm availability.
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+                Where are you located?
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                S by Hazel Beauty Salon is listed in Sabah Al Salem,
+                Kuwait. See the Contact page for the full address.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ======================================================
+     CONTACT / BOOKING PAGE
+====================================================== -->
+
+<main class="page" id="page-contact">
+
+<section class="section" style="padding-top:180px;">
+
+    <div class="booking-layout">
+
+        <div class="reveal">
+
+            <div class="section-number">
+                01 — RESERVE YOUR VISIT
+            </div>
+
+            <h1 class="section-title">
+                Your next<br>
+                <span>beautiful moment.</span>
+            </h1>
+
+            <div class="gold-line"></div>
+
+            <p class="section-subtitle">
+                Tell us what you're looking for and our team
+                can help arrange your visit.
+            </p>
+
+            <br>
+
+            <div class="contact-details">
+
+                <div class="contact-row">
+
+                    <small>Location</small>
+
+                    <p>
+                        1st Floor, Block 1,<br>
+                        Street 117, Building 522,<br>
+                        7th Avenue,<br>
+                        Sabah Al Salem, Kuwait
+                    </p>
+
+                </div>
+
+
+                <div class="contact-row">
+
+                    <small>Phone</small>
+
+                    <p>
+                        +965 2209 9229
+                    </p>
+
+                </div>
+
+
+                <div class="contact-row">
+
+                    <small>Opening Hours</small>
+
+                    <p>
+                        Sunday — Saturday<br>
+                        10:00 AM — 8:00 PM
+                    </p>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <a
+            href="https://wa.me/96522099229"
+            target="_blank"
+            class="btn btn-gold">
+
+                WhatsApp Us
+
+            </a>
+
+        </div>
+
+
+        <div class="booking-form reveal">
+
+            <div class="section-number">
+                BOOKING REQUEST
+            </div>
+
+            <h2 style="
+            font-family:'Cormorant Garamond',serif;
+            font-size:45px;
+            font-weight:500;
+            margin-bottom:30px;">
+                Let's plan your visit.
+            </h2>
+
+
+            <form id="bookingForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Your Name</label>
+
+                        <input
+                        type="text"
+                        id="name"
+                        placeholder="Full name"
+                        required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Phone</label>
+
+                        <input
+                        type="tel"
+                        id="phone"
+                        placeholder="+965..."
+                        required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Email</label>
+
+                        <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Service</label>
+
+                        <select id="service" required>
+
+                            <option value="">
+                                Select service
+                            </option>
+
+                            <option>
+                                Signature Haircut
+                            </option>
+
+                            <option>
+                                Blow Dry
+                            </option>
+
+                            <option>
+                                Dimensional Colour
+                            </option>
+
+                            <option>
+                                Highlights
+                            </option>
+
+                            <option>
+                                Facial Ritual
+                            </option>
+
+                            <option>
+                                Manicure
+                            </option>
+
+                            <option>
+                                Pedicure
+                            </option>
+
+                            <option>
+                                Hair Treatment
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Preferred Date</label>
+
+                        <input
+                        type="date"
+                        id="date"
+                        required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Preferred Time</label>
+
+                        <select id="time" required>
+
+                            <option value="">
+                                Choose time
+                            </option>
+
+                            <option>10:00 AM</option>
+                            <option>11:00 AM</option>
+                            <option>12:00 PM</option>
+                            <option>01:00 PM</option>
+                            <option>02:00 PM</option>
+                            <option>03:00 PM</option>
+                            <option>04:00 PM</option>
+                            <option>05:00 PM</option>
+                            <option>06:00 PM</option>
+                            <option>07:00 PM</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Notes</label>
+
+                        <textarea
+                        id="notes"
+                        placeholder="Tell us anything we should know..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                type="submit"
+                class="btn btn-gold"
+                style="width:100%;">
+
+                    Request Appointment
+
+                </button>
+
+
+                <div
+                class="form-message"
+                id="formMessage">
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section section-dark">
+
+    <div class="section-header">
+
+        <div class="section-number">02 — FIND US</div>
+
+        <h2 class="section-title">
+            Come visit<br>
+            <span>us.</span>
+        </h2>
+
+    </div>
+
+    <div style="
+    width:100%;
+    height:400px;
+    background:#171512;
+    border:1px solid var(--line);
+    overflow:hidden;">
+
+        <iframe
+        src="https://www.google.com/maps?q=S%20by%20Hazel%20Beauty%20Salon%20Sabah%20Al%20Salem%20Kuwait&output=embed"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        loading="lazy">
+        </iframe>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+
+            <div class="footer-logo">
+                S <span style="color:var(--gold);">
+                    by Hazel
+                </span>
+            </div>
+
+            <p class="footer-description">
+                A refined beauty destination in Kuwait,
+                created around artistry, elegance and you.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">
+                Explore
+            </div>
+
+            <ul class="footer-links">
+
+                <li><a href="#about">Our Story</a></li>
+
+                <li><a href="#services">Services</a></li>
+
+                <li><a href="#gallery">Gallery</a></li>
+
+                <li><a href="#team">Our Team</a></li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">
+                Visit
+            </div>
+
+            <ul class="footer-links">
+
+                <li>
+                    Sabah Al Salem
+                </li>
+
+                <li>
+                    Kuwait
+                </li>
+
+                <li>
+                    +965 2209 9229
+                </li>
+
+                <li>
+                    10 AM — 8 PM
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">
+                Book
+            </div>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="#contact">
+                        Appointment
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                    href="https://wa.me/96522099229"
+                    target="_blank">
+                        WhatsApp
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <div>
+            © 2026 S by Hazel Salon. All rights reserved.
+        </div>
+
+        <div>
+            KUWAIT · BEAUTY · ELEVATED
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- WHATSAPP -->
+
+<a
+href="https://wa.me/96522099229"
+target="_blank"
+class="whatsapp"
+title="Chat on WhatsApp">
+
+    ☎
+
+</a>
+
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox">
+
+    <button class="close-lightbox" id="closeLightbox">
+        ×
+    </button>
+
+    <img id="lightboxImage" src="" alt="Gallery image">
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   S BY HAZEL
+   JAVASCRIPT
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   LOADER
+--------------------------------------------------------- */
+
+window.addEventListener("load", function(){
+
+    setTimeout(function(){
+
+        document.getElementById("loader")
+        .classList.add("hide");
+
+        showPage(
+            location.hash.replace("#","") || "home"
+        );
+
+    },1200);
+
+});
+
+
+/* ---------------------------------------------------------
+   CUSTOM CURSOR
+--------------------------------------------------------- */
+
+const cursor = document.getElementById("cursor");
+
+document.addEventListener("mousemove", function(e){
+
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+
+});
+
+
+/* ---------------------------------------------------------
+   HEADER SCROLL
+--------------------------------------------------------- */
+
+const header = document.getElementById("header");
+
+window.addEventListener("scroll",function(){
+
+    if(window.scrollY > 50){
+        header.classList.add("scrolled");
+    }else{
+        header.classList.remove("scrolled");
+    }
+
+});
+
+
+/* ---------------------------------------------------------
+   MOBILE MENU
+--------------------------------------------------------- */
+
+const menuBtn = document.getElementById("menuBtn");
+const nav = document.getElementById("nav");
+
+menuBtn.addEventListener("click",function(){
+
+    nav.classList.toggle("open");
+
+    if(nav.classList.contains("open")){
+        menuBtn.innerHTML = "×";
+    }else{
+        menuBtn.innerHTML = "☰";
+    }
+
+});
+
+
+/* ---------------------------------------------------------
+   PAGE NAVIGATION
+--------------------------------------------------------- */
+
+const navLinks = document.querySelectorAll("[data-page]");
+
+navLinks.forEach(function(link){
+
+    link.addEventListener("click",function(){
+
+        const page = link.getAttribute("data-page");
+
+        showPage(page);
+
+        nav.classList.remove("open");
+
+        menuBtn.innerHTML = "☰";
+
+    });
+
+});
+
+
+function showPage(page){
+
+    const pages = document.querySelectorAll(".page");
+
+    let target = document.getElementById("page-" + page);
+
+    if(!target){
+        page = "home";
+        target = document.getElementById("page-home");
+    }
+
+    pages.forEach(function(p){
+        p.classList.remove("active");
+    });
+
+    target.classList.add("active");
+
+    navLinks.forEach(function(link){
+
+        link.classList.remove("active");
+
+        if(link.getAttribute("data-page") === page){
+            link.classList.add("active");
+        }
+
+    });
+
+    window.scrollTo({
+        top:0,
+        behavior:"instant"
+    });
+
+    setTimeout(startReveal,100);
+
+}
+
+
+/* ---------------------------------------------------------
+   HASH CHANGE
+--------------------------------------------------------- */
+
+window.addEventListener("hashchange",function(){
+
+    let page = location.hash.replace("#","");
+
+    if(!page){
+        page = "home";
+    }
+
+    showPage(page);
+
+});
+
+
+/* ---------------------------------------------------------
+   REVEAL ANIMATIONS
+--------------------------------------------------------- */
+
+function startReveal(){
+
+    const elements =
+        document.querySelectorAll(".page.active .reveal");
+
+    elements.forEach(function(element){
+
+        const rect =
+            element.getBoundingClientRect();
+
+        if(rect.top < window.innerHeight){
+
+            element.classList.add("visible");
+
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll",startReveal);
+
+
+/* ---------------------------------------------------------
+   SERVICE FILTER
+--------------------------------------------------------- */
+
+const serviceTabs =
+    document.querySelectorAll(".service-tab");
+
+const serviceItems =
+    document.querySelectorAll(".service-item");
+
+serviceTabs.forEach(function(tab){
+
+    tab.addEventListener("click",function(){
+
+        serviceTabs.forEach(function(t){
+            t.classList.remove("active");
+        });
+
+        tab.classList.add("active");
+
+        const filter =
+            tab.getAttribute("data-filter");
+
+        serviceItems.forEach(function(item){
+
+            const category =
+                item.getAttribute("data-category");
+
+            if(filter === "all" || category === filter){
+
+                item.style.display = "grid";
+
+            }else{
+
+                item.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+});
+
+
+/* ---------------------------------------------------------
+   GALLERY LIGHTBOX
+--------------------------------------------------------- */
+
+const galleryImages =
+    document.querySelectorAll(".gallery-item img");
+
+const lightbox =
+    document.getElementById("lightbox");
+
+const lightboxImage =
+    document.getElementById("lightboxImage");
+
+const closeLightbox =
+    document.getElementById("closeLightbox");
+
+galleryImages.forEach(function(img){
+
+    img.parentElement.addEventListener("click",function(){
+
+        lightboxImage.src = img.src;
+
+        lightbox.classList.add("show");
+
+        document.body.classList.add("no-scroll");
+
+    });
+
+});
+
+
+closeLightbox.addEventListener("click",function(){
+
+    lightbox.classList.remove("show");
+
+    document.body.classList.remove("no-scroll");
+
+});
+
+
+lightbox.addEventListener("click",function(e){
+
+    if(e.target === lightbox){
+
+        lightbox.classList.remove("show");
+
+        document.body.classList.remove("no-scroll");
+
+    }
+
+});
+
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key === "Escape"){
+
+        lightbox.classList.remove("show");
+
+        document.body.classList.remove("no-scroll");
+
+    }
+
+});
+
+
+/* ---------------------------------------------------------
+   FAQ
+--------------------------------------------------------- */
+
+const faqQuestions =
+    document.querySelectorAll(".faq-question");
+
+faqQuestions.forEach(function(question){
+
+    question.addEventListener("click",function(){
+
+        const item =
+            question.parentElement;
+
+        const isOpen =
+            item.classList.contains("open");
+
+        document.querySelectorAll(".faq-item")
+        .forEach(function(other){
+
+            other.classList.remove("open");
+
+            const symbol =
+                other.querySelector(".faq-question span");
+
+            symbol.textContent = "+";
+
+        });
+
+        if(!isOpen){
+
+            item.classList.add("open");
+
+            question.querySelector("span")
+            .textContent = "−";
+
+        }
+
+    });
+
+});
+
+
+/* ---------------------------------------------------------
+   BOOKING FORM
+--------------------------------------------------------- */
+
+const bookingForm =
+    document.getElementById("bookingForm");
+
+bookingForm.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const service =
+        document.getElementById("service").value;
+
+    const date =
+        document.getElementById("date").value;
+
+    const time =
+        document.getElementById("time").value;
+
+    const message =
+        document.getElementById("formMessage");
+
+
+    if(!name || !phone || !service || !date || !time){
+
+        message.style.display = "block";
+
+        message.innerHTML =
+            "Please complete all required fields.";
+
+        return;
+
+    }
+
+
+    message.style.display = "block";
+
+    message.innerHTML =
+        "Thank you, " + name +
+        ". Your appointment request for " +
+        service +
+        " on " +
+        date +
+        " at " +
+        time +
+        " has been prepared. " +
+        "Please contact the salon on +965 2209 9229 " +
+        "to confirm availability.";
+
+
+    bookingForm.reset();
+
+});
+
+
+/* ---------------------------------------------------------
+   DATE: PREVENT PAST DATES
+--------------------------------------------------------- */
+
+const dateInput =
+    document.getElementById("date");
+
+const today =
+    new Date().toISOString().split("T")[0];
+
+dateInput.min = today;
+
+
+/* ---------------------------------------------------------
+   CLOSE MOBILE NAV WHEN CLICKING OUTSIDE
+--------------------------------------------------------- */
+
+document.addEventListener("click",function(e){
+
+    if(
+        nav.classList.contains("open") &&
+        !nav.contains(e.target) &&
+        e.target !== menuBtn
+    ){
+
+        nav.classList.remove("open");
+
+        menuBtn.innerHTML = "☰";
+
+    }
+
+});
+
+
+/* ---------------------------------------------------------
+   INITIAL REVEAL
+--------------------------------------------------------- */
+
+setTimeout(startReveal,150);
+
+
+/* ---------------------------------------------------------
+   CONSOLE
+--------------------------------------------------------- */
+
+console.log(
+"S by Hazel Salon website loaded successfully."
+);
+
+</script>
+
+</body>
+</html>
